@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shuang Qiu — Product & Technology</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink2: #4a4a46;
+    --ink3: #8a8a85;
+    --paper: #f8f5ef;
+    --paper2: #f0ece3;
+    --paper3: #e8e3d8;
+    --accent: #c84b2f;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  .page { max-width: 860px; margin: 0 auto; padding: 0 2rem 4rem; }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0 3rem;
+    border-bottom: 1px solid var(--paper3);
+    margin-bottom: 4rem;
+  }
+  .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--ink3); letter-spacing: .08em; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 13px; color: var(--ink2); text-decoration: none; letter-spacing: .04em; transition: color .2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  .hero { margin-bottom: 5rem; display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: start; }
+  .hero-text { }
+  .hero-tag { display: inline-block; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; }
+  .hero h1 { font-family: var(--serif); font-size: clamp(3rem, 7vw, 5.5rem); line-height: .95; color: var(--ink); margin-bottom: 1.5rem; letter-spacing: -.02em; }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-body { max-width: 540px; font-size: 17px; line-height: 1.75; color: var(--ink2); font-weight: 300; margin-bottom: 2rem; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px; transition: opacity .2s; }
+  .hero-cta:hover { opacity: .7; }
+  .hero-photo { width: 180px; height: 220px; object-fit: cover; filter: grayscale(20%); border: 1px solid var(--paper3); flex-shrink: 0; }
+
+  /* ── SECTION LABEL ── */
+  .section-label { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+  .section-label span { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink3); }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--paper3); }
+
+  /* ── PROJECTS ── */
+  .projects { margin-bottom: 5rem; }
+  .project-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--paper3); border: 1px solid var(--paper3); }
+  .project-card { background: var(--paper); padding: 2rem; transition: background .2s; }
+  .project-card:hover { background: var(--paper2); }
+  .project-inner { display: grid; grid-template-columns: 1fr 200px; gap: 2rem; align-items: start; }
+  .project-img { width: 100%; height: 130px; object-fit: cover; border: 1px solid var(--paper3); filter: grayscale(15%); display: block; }
+  .project-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: .75rem; }
+  .project-meta { }
+  .project-num { font-family: var(--mono); font-size: 11px; color: var(--ink3); margin-bottom: .5rem; }
+  .project-title { font-family: var(--serif); font-size: 1.5rem; color: var(--ink); line-height: 1.2; }
+  .project-tag { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: rgba(200,75,47,.08); padding: 4px 10px; border-radius: 2px; white-space: nowrap; flex-shrink: 0; }
+  .project-desc { font-size: 14px; line-height: 1.65; color: var(--ink2); font-weight: 300; margin-bottom: 1rem; }
+  .project-links { display: flex; flex-wrap: wrap; gap: .75rem; }
+  .project-link { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(200,75,47,.3); padding-bottom: 1px; transition: opacity .2s; }
+  .project-link:hover { opacity: .65; }
+
+  /* ── EXPERIENCE ── */
+  .experience { margin-bottom: 5rem; }
+  .exp-list { display: flex; flex-direction: column; gap: 2rem; }
+  .exp-item { display: grid; grid-template-columns: 140px 1fr; gap: 2rem; }
+  .exp-year { font-family: var(--mono); font-size: 12px; color: var(--ink3); padding-top: 3px; }
+  .exp-role { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+  .exp-company { font-size: 13px; color: var(--accent); font-family: var(--mono); margin-bottom: .5rem; }
+  .exp-detail { font-size: 13px; color: var(--ink2); line-height: 1.6; font-weight: 300; }
+
+  /* ── SKILLS ── */
+  .skills { margin-bottom: 5rem; }
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .skill-pill { font-family: var(--mono); font-size: 12px; color: var(--ink2); background: var(--paper2); border: 1px solid var(--paper3); padding: 6px 14px; border-radius: 2px; letter-spacing: .04em; }
+
+  /* ── FOOTER ── */
+  footer { border-top: 1px solid var(--paper3); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-name { font-family: var(--serif); font-size: 1.1rem; color: var(--ink); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink3); text-decoration: none; transition: color .2s; }
+  .footer-links a:hover { color: var(--accent); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-photo { width: 120px; height: 150px; }
+    .project-inner { grid-template-columns: 1fr; }
+    .project-img { height: 180px; }
+    .exp-item { grid-template-columns: 1fr; gap: .25rem; }
+    .hero h1 { font-size: 3rem; }
+    nav { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── NAVIGATION ── -->
+  <nav>
+    <div class="nav-logo">SQ — Portfolio</div>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="https://www.linkedin.com/in/shuang-qiu-5a57b8334/" target="_blank">LinkedIn ↗</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-tag">Product &amp; Technology</div>
+      <h1>Shuang<br><em>Qiu</em></h1>
+      <p class="hero-body">
+        NYU freshman building at the intersection of product, technology, and community.
+        I'm drawn to product management and the ways technology can solve real problems —
+        and I'm here to build things that matter.
+      </p>
+      <a href="mailto:shuangqiu883@gmail.com" class="hero-cta">Get in touch →</a>
+    </div>
+    <!-- Replace images/headshot.jpg with your actual headshot file -->
+    <img
+      src="images/headshot.jpg"
+      alt="Shuang Qiu, NYU student studying Business, Technology and Entrepreneurship"
+      class="hero-photo"
+    >
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section class="projects" id="projects">
+    <div class="section-label"><span>Selected work</span></div>
+    <div class="project-grid">
+
+      <!-- PROJECT 1: BlazeOut -->
+      <div class="project-card">
+        <div class="project-inner">
+          <div>
+            <div class="project-top">
+              <div class="project-meta">
+                <div class="project-num">01</div>
+                <div class="project-title">BlazeOut</div>
+              </div>
+              <div class="project-tag">Hardware + AI</div>
+            </div>
+            <p class="project-desc">
+              An AI-powered Arduino survival-skills game built at the Microsoft Hackathon — 2nd place.
+              Integrated real-world sensors with external APIs and AI-driven logic, bridging physical
+              computing with software intelligence. Designed, built, and pitched in one week.
+            </p>
+            <div class="project-links">
+              <a href="https://canva.link/vyx718pi2f4xd4s" target="_blank" class="project-link">View deck ↗</a>
+            </div>
+          </div>
+          <!-- Replace images/project-1.jpg with a screenshot or photo of BlazeOut -->
+          <img
+            src="images/project-1.jpg"
+            alt="BlazeOut: Arduino hardware prototype with sensors connected to a laptop running AI logic"
+            class="project-img"
+          >
+        </div>
+      </div>
+
+      <!-- PROJECT 2: ArtLift -->
+      <div class="project-card">
+        <div class="project-inner">
+          <div>
+            <div class="project-top">
+              <div class="project-meta">
+                <div class="project-num">02</div>
+                <div class="project-title">ArtLift</div>
+              </div>
+              <div class="project-tag">Venture project</div>
+            </div>
+            <p class="project-desc">
+              A structured critique platform for artists who want real feedback on works-in-progress,
+              not just likes. Identified the gap between how creators share work and how they actually
+              improve. Designed a freemium product with critique circles, feedback templates, and
+              categorized responses — targeting a 300M+ TAM of emerging digital artists.
+            </p>
+            <div class="project-links">
+              <a href="https://docs.google.com/presentation/d/1OmR33SPdM-il3FQlVUWsSG-J7vjGGO1Xkr6muJVE6rA/edit?usp=sharing" target="_blank" class="project-link">View deck ↗</a>
+            </div>
+          </div>
+          <!-- Replace images/project-2.jpg with a slide screenshot or mockup from the ArtLift deck -->
+          <img
+            src="images/project-2.jpg"
+            alt="ArtLift app mockup showing structured critique interface with feedback categories"
+            class="project-img"
+          >
+        </div>
+      </div>
+
+      <!-- PROJECT 3: ArtsWrk -->
+      <div class="project-card">
+        <div class="project-inner">
+          <div>
+            <div class="project-top">
+              <div class="project-meta">
+                <div class="project-num">03</div>
+                <div class="project-title">ArtsWrk Product Strategy</div>
+              </div>
+              <div class="project-tag">Product strategy</div>
+            </div>
+            <p class="project-desc">
+              Conducted 20+ user interviews with performing arts professionals to identify trust
+              and connection as the core barriers to platform adoption. Designed three features —
+              mutual contact syncing, artist video reels, and a gamified credits system — and
+              pitched directly to the founders, grounded in user research and a revised subscription model.
+            </p>
+            <div class="project-links">
+              <a href="https://docs.google.com/presentation/d/1kyG94ylJu5PiIp1qbKAZsbheiHVQSAWBV7sJnqp9X_o/edit?slide=id.p#slide=id.p" target="_blank" class="project-link">View deck ↗</a>
+            </div>
+          </div>
+          <!-- Replace images/project-3.jpg with a slide screenshot or photo from the ArtsWrk pitch -->
+          <img
+            src="images/project-3.jpg"
+            alt="ArtsWrk pitch deck slide showing product feature recommendations and user research findings"
+            class="project-img"
+          >
+        </div>
+      </div>
+
+      <!-- PROJECT 4: Finiverse -->
+      <div class="project-card">
+        <div class="project-inner">
+          <div>
+            <div class="project-top">
+              <div class="project-meta">
+                <div class="project-num">04</div>
+                <div class="project-title">Finiverse Ambassador</div>
+              </div>
+              <div class="project-tag">Outreach + strategy</div>
+            </div>
+            <p class="project-desc">
+              Represented a UPenn student loan app across 9 Philadelphia public schools, managing
+              a stakeholder database and co-developing presentations with live app demos to make
+              financial literacy accessible for student audiences. Contributed competitive research
+              to guide the broader ambassador program strategy.
+            </p>
+            <div class="project-links">
+              <a href="https://docs.google.com/presentation/d/1rjmQ6P2wEV7XfgBLAjXqMTnetRPszX3TblROXU4aUOA/edit?slide=id.g31aabcc8fdf_6_0" target="_blank" class="project-link">Week 1 deck ↗</a>
+              <a href="https://docs.google.com/presentation/d/1deMxGos4hqbzFO2W4uNCcLUlUiWS3Zi4ts6w6bjfw_8/edit?slide=id.g31aabcc8fdf_6_0" target="_blank" class="project-link">Week 2 deck ↗</a>
+            </div>
+          </div>
+          <!-- Replace images/project-4.jpg with a photo from a school presentation or slide screenshot -->
+          <img
+            src="images/project-4.jpg"
+            alt="Finiverse presentation slide on college financing for Philadelphia high school students"
+            class="project-img"
+          >
+        </div>
+      </div>
+
+      <!-- PROJECT 5: FNC Internship -->
+      <div class="project-card">
+        <div class="project-inner">
+          <div>
+            <div class="project-top">
+              <div class="project-meta">
+                <div class="project-num">05</div>
+                <div class="project-title">FNC Internship</div>
+              </div>
+              <div class="project-tag">Research + strategy</div>
+            </div>
+            <p class="project-desc">
+              Researched the Product Management career path at the Federation of Neighborhood Centers,
+              synthesizing findings from industry sources, job platforms, and university guides into a
+              structured final presentation. Networked with small businesses at BOK Market to connect
+              field observations to product strategy concepts.
+            </p>
+            <div class="project-links">
+              <a href="https://canva.link/kkj2pn3jhkj43ul" target="_blank" class="project-link">Deliverable 1 ↗</a>
+              <a href="https://canva.link/5cmgh35945lppg3" target="_blank" class="project-link">Deliverable 2 ↗</a>
+            </div>
+          </div>
+          <!-- Replace images/project-5.jpg with a screenshot from one of the FNC Canva presentations -->
+          <img
+            src="images/project-5.jpg"
+            alt="FNC internship presentation on the Product Management career path"
+            class="project-img"
+          >
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── EXPERIENCE ── -->
+  <section class="experience" id="experience">
+    <div class="section-label"><span>Experience</span></div>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-year">Spring 2026</div>
+        <div>
+          <div class="exp-role">Hackathon Participant — 2nd Place</div>
+          <div class="exp-company">Microsoft Hackathon · New York City</div>
+          <div class="exp-detail">Built BlazeOut, an AI-powered hardware-software product integrating Arduino sensors with external APIs.</div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-year">Fall 2025</div>
+        <div>
+          <div class="exp-role">Product Strategist / Consultant</div>
+          <div class="exp-company">ArtsWrk · New York City</div>
+          <div class="exp-detail">Led user research and feature design for a performing arts hiring platform, pitching recommendations directly to founders.</div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-year">Summer 2025</div>
+        <div>
+          <div class="exp-role">Student Intern</div>
+          <div class="exp-company">Federation of Neighborhood Centers · Philadelphia</div>
+          <div class="exp-detail">Researched the PM career path and networked with small businesses at BOK Market to analyze marketing strategies in the field.</div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-year">2024 – 2025</div>
+        <div>
+          <div class="exp-role">Student Ambassador</div>
+          <div class="exp-company">Finiverse / University of Pennsylvania · Philadelphia</div>
+          <div class="exp-detail">Built school contact database, co-developed presentation scripts, and contributed competitive research to guide ambassador program strategy.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section class="skills">
+    <div class="section-label"><span>Skills &amp; tools</span></div>
+    <div class="skills-grid">
+      <div class="skill-pill">Product Strategy</div>
+      <div class="skill-pill">User Research</div>
+      <div class="skill-pill">Design Thinking</div>
+      <div class="skill-pill">Arduino / Embedded</div>
+      <div class="skill-pill">API Integration</div>
+      <div class="skill-pill">AI Tools</div>
+      <div class="skill-pill">Public Speaking</div>
+      <div class="skill-pill">Canva</div>
+      <div class="skill-pill">Google Workspace</div>
+      <div class="skill-pill">Microsoft Office</div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-name">Shuang Qiu</div>
+    <div class="footer-links">
+      <a href="mailto:shuangqiu883@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/shuang-qiu-5a57b8334/" target="_blank">LinkedIn</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
